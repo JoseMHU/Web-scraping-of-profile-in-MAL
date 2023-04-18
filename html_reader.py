@@ -5,14 +5,14 @@ from requests_html import HTMLSession
 import re
 
 
-def add_data_anime(id_anime):
+def add_data_anime(id_anime=35180):
     mal_html_data = {"Status": "",
                      "Aired": "",
                      "Premiered": "",
                      "Studios": "",
                      "Genre": ""}
     regular_expression = ["Status: ([A-Za-z ]+)", "Aired: ([A-Za-z 0-9, \\?]+)", "Premiered: ([A-Za-z0-9 ]+)",
-                          "Studios: ([A-Za-z 0-9-.°]+)", "Genres: ([A-Za-z ,]+)"]
+                          "Studios: ([A-Za-z 0-9-.°]+)", "Genres*: ([A-Za-z ,]+)"]
     mal_page = HTMLSession().get(f"https://myanimelist.net/anime/{id_anime}")
     for element in mal_page.html.find(".leftside", first=True).find(".spaceit_pad"):
         count = 0
@@ -31,3 +31,7 @@ def add_data_anime(id_anime):
                 mal_html_data[keys] = list_items
             count += 1
     return mal_html_data
+
+if __name__ == "__main__":
+    # Functionality test
+    print(add_data_anime())
