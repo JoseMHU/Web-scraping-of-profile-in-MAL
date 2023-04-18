@@ -4,19 +4,21 @@ import pickle
 from html_reader import add_data_anime
 
 
-def pkl_manager(dataframe):
+def pkl_manager(dataframe, update):
     """
     This function is the main handler for reading and writing the pkl file.
     :param dataframe: dataframe generated from XML file read
+    :param update: It is used to activate or deactivate the update of the data stored in the function pkl_data_update
     :return: Anime dictionary by ID with data dictionaries inside
     """
     try:
         with open("MAL_local_data.pkl", "rb") as MAL_data:
             old_data = pickle.load(MAL_data)
-            pkl_data_update()
+            if update:
+                pkl_data_update()
             new_data = pkl_add_data(dataframe, old_data)
             return new_data
-    except EOFError and FileNotFoundError:
+    except (EOFError, FileNotFoundError):
         with open("MAL_local_data.pkl", "wb") as MAL_data:
             data = {}
             print(f"Consulting: {len(dataframe['series_animedb_id'].to_numpy().tolist()[0:30])} animes")
@@ -68,6 +70,7 @@ def pkl_data_update():
 
 
 if __name__ == "__main__":
+    # Functionality test
     from xml_reader import xml_reader
     df = xml_reader("C:\\Users\\josep\\Desktop\\animelist_1681744650_-_8148940.xml")
-    pkl_manager(df)
+    pkl_manager(df, False)
