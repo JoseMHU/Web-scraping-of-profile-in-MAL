@@ -4,12 +4,14 @@
 import tkinter
 from tkinter import filedialog
 import customtkinter
+from pathlib import Path
 
 
 class Gui:
     def __init__(self):
         self.path = ""
 
+    def run(self):
         customtkinter.set_appearance_mode("System")
         customtkinter.set_default_color_theme("blue")
         root = customtkinter.CTk()
@@ -17,7 +19,7 @@ class Gui:
         root.title("MAL XML file reader")
 
         def open_file():
-            self.path = filedialog.askopenfilename(initialdir="C:\\Users\\josep\\Desktop",
+            self.path = filedialog.askopenfilename(initialdir=f"{Path.home()}\\Desktop",
                                                    title="Select a XML file", filetypes=(("XML file", "*.xml"),))
             root.destroy()
 
@@ -29,4 +31,5 @@ class Gui:
 
 if __name__ == "__main__":
     # Functionality test
-    Gui()
+    star_gui = Gui()
+    star_gui.run()
