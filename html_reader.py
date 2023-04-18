@@ -17,7 +17,7 @@ def add_data_anime(id_anime):
                      "Studios": "",
                      "Genre": ""}
     regular_expression = ("Status: ([A-Za-z ]+)", "Aired: ([A-Za-z 0-9, \\?]+)", "Premiered: ([A-Za-z0-9 ]+)",
-                          "Studios: ([A-Za-z 0-9-.°]+)", "Genres*: ([A-Za-z ,]+)")
+                          "Studios: ([A-Za-z 0-9-.°]+)", "Genres*: ([A-Za-z ,-]+)")
     mal_page = HTMLSession().get(f"https://myanimelist.net/anime/{id_anime}")
     try:
         for element in mal_page.html.find(".leftside", first=True).find(".spaceit_pad"):
@@ -47,4 +47,4 @@ def add_data_anime(id_anime):
 
 if __name__ == "__main__":
     # Functionality test
-    print(add_data_anime(35180))
+    print(add_data_anime(41457))

@@ -3,6 +3,7 @@
 from gui import Gui
 from xml_reader import xml_reader
 from pkl_manager import pkl_manager
+from csv_generator import data_combination
 
 
 def main(update=True):
@@ -20,6 +21,9 @@ def main(update=True):
 
     # We send the dataframe to the pkl_manager module to upload the MAL data to the system.
     mal_data = pkl_manager(df, update)
+
+    # We pass the dataframe extracted from the XML and the MAL data to the module that combines them.
+    data_combination(df, mal_data)
 
 
 if __name__ == "__main__":
