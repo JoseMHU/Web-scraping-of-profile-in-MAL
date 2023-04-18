@@ -17,7 +17,6 @@ def main():
     # We send the path obtained to the xml_reader module and get the dataframe
     df = xml_reader(star_gui.path)
 
-    # We pass the dataframe through the module that enriches the data by making an HTML query.
     print(pkl_manager(df))
 
 

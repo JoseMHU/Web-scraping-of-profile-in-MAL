@@ -11,9 +11,7 @@ def pkl_manager(dataframe):
     except FileNotFoundError:
         with open("MAL_local_data.pkl", "wb") as MAL_data:
             data = {}
-            count = 0
             for id_anime in dataframe['series_animedb_id'].to_numpy().tolist():
                 data[id_anime[0]] = add_data_anime(id_anime[0])
-                count += 1
             pickle.dump(data, MAL_data)
             return data
