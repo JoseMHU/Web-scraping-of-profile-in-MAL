@@ -3,7 +3,7 @@
 from gui import Gui
 from xml_reader import xml_reader
 from pkl_manager import pkl_manager
-from csv_generator import data_combination
+from csv_generator import csv_generator
 
 
 def main(update=True):
@@ -23,8 +23,11 @@ def main(update=True):
     mal_data = pkl_manager(df, update)
 
     # We pass the dataframe extracted from the XML and the MAL data to the module that combines them.
-    data_combination(df, mal_data)
+    csv_generator(df, mal_data)
 
 
 if __name__ == "__main__":
-    main(update=False)
+    # If the optional "update" parameter is set to "False", the pkl_manager module will not perform a new HTML query
+    # to update the data for animes whose status is not equal to "finished" and which already exist in the local pkl
+    # file. This option does not affect operation if the program is run for the first time or if the pkl file is deleted
+    main(update=True)
