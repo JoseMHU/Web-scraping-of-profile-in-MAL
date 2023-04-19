@@ -38,9 +38,9 @@ def pkl_add_data(dataframe, old_data):
     """
     if len(dataframe['series_animedb_id'].to_numpy().tolist()) != len(old_data):
         print(f"Consulting: {len(dataframe['series_animedb_id'].to_numpy().tolist()) - len(old_data)} animes")
-        count = 1
+        count = 0
         for id_anime in dataframe['series_animedb_id'].to_numpy().tolist():
-            if [id_anime[0]] not in list(old_data.keys()):
+            if id_anime[0] not in list(old_data.keys()):
                 print(f"{count}", end=",")
                 old_data[id_anime[0]] = add_data_anime(id_anime[0])
                 count += 1
