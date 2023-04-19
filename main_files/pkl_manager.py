@@ -24,8 +24,8 @@ def pkl_manager(dataframe, update):
             print(f"Consulting: {len(dataframe['series_animedb_id'].to_numpy().tolist())} animes")
             for id_anime in dataframe['series_animedb_id'].to_numpy().tolist():
                 data[id_anime[0]] = add_data_anime(id_anime[0])
+                pickle.dump(data, MAL_data)
                 print(f"{len(data)}", end=",")
-            pickle.dump(data, MAL_data)
             return data
 
 
@@ -44,8 +44,8 @@ def pkl_add_data(dataframe, old_data):
                 print(f"{count}", end=",")
                 old_data[id_anime[0]] = add_data_anime(id_anime[0])
                 count += 1
-        with open("MAL_local_data.pkl", "wb") as MAL_data:
-            pickle.dump(old_data, MAL_data)
+            with open("MAL_local_data.pkl", "wb") as MAL_data:
+                pickle.dump(old_data, MAL_data)
     return old_data
 
 
@@ -59,14 +59,14 @@ def pkl_data_update():
     print("Updating local data:", end=" ")
     with open("MAL_local_data.pkl", "rb") as MAL_data:
         old_data = pickle.load(MAL_data)
-        count = 1
-        for keys in old_data:
-            if old_data[keys]["Status"] != "Finished Airing":
-                print(f"{count}", end=",")
-                count += 1
-                old_data[keys] = add_data_anime(keys)
-    with open("MAL_local_data.pkl", "wb") as MAL_data:
-        pickle.dump(old_data, MAL_data)
+    count = 1
+    for keys in old_data:
+        if old_data[keys]["Status"] != "Finished Airing":
+            print(f"{count}", end=",")
+            count += 1
+            old_data[keys] = add_data_anime(keys)
+        with open("MAL_local_data.pkl", "wb") as MAL_data:
+            pickle.dump(old_data, MAL_data)
 
 
 if __name__ == "__main__":
