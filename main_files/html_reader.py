@@ -3,6 +3,7 @@
 # been read before.
 from requests_html import HTMLSession
 import re
+from time import sleep
 
 
 def add_data_anime(id_anime):
@@ -42,6 +43,7 @@ def add_data_anime(id_anime):
                 count += 1
     except AttributeError:
         print("Problems with the HTML connection. Manually check that the My Anime List page is up and running.")
+    sleep(6)
     return mal_html_data
 
 
