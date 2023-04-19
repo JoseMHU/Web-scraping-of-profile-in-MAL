@@ -94,8 +94,8 @@ def relational_table_builder(pkl_data_extraction, serie_genre):
 
 if __name__ == "__main__":
     # Functionality test
-    from xml_reader import xml_reader
-    from pkl_manager import pkl_manager
+    from main_files.xml_reader import xml_reader
+    from main_files.pkl_manager import pkl_manager
     df = xml_reader("C:\\Users\\josep\\Desktop\\animelist_1681744650_-_8148940.xml")
     mal_data = pkl_manager(df, False)
     csv_generator(df, mal_data)

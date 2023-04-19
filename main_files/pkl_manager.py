@@ -1,7 +1,7 @@
 # This module handles the reading and writing of a pkl binary file where the data queried in My anime list is copied so
 # as not to perform repeated HTML queries
 import pickle
-from html_reader import add_data_anime
+from main_files.html_reader import add_data_anime
 
 
 def pkl_manager(dataframe, update):
@@ -21,8 +21,8 @@ def pkl_manager(dataframe, update):
     except (EOFError, FileNotFoundError):
         with open("MAL_local_data.pkl", "wb") as MAL_data:
             data = {}
-            print(f"Consulting: {len(dataframe['series_animedb_id'].to_numpy().tolist()[0:30])} animes")
-            for id_anime in dataframe['series_animedb_id'].to_numpy().tolist()[0:30]:
+            print(f"Consulting: {len(dataframe['series_animedb_id'].to_numpy().tolist())} animes")
+            for id_anime in dataframe['series_animedb_id'].to_numpy().tolist():
                 data[id_anime[0]] = add_data_anime(id_anime[0])
                 print(f"{len(data)}", end=",")
             pickle.dump(data, MAL_data)
@@ -71,6 +71,6 @@ def pkl_data_update():
 
 if __name__ == "__main__":
     # Functionality test
-    from xml_reader import xml_reader
+    from main_files.xml_reader import xml_reader
     df = xml_reader("C:\\Users\\josep\\Desktop\\animelist_1681744650_-_8148940.xml")
     pkl_manager(df, False)
