@@ -6,11 +6,11 @@ Repository that performs HTML queries based on the XML file that My Anime List e
 This repository creates .csv files with data about the personal anime list you have on your My Anime List profile.
 The files have:
 ### Main_table.csv file:
-_* Anime ID | Title | Series type | Series episodes | Your personal score  | Your personal state | Anime state | Aired period | Premiere season | Studio_
+* Anime ID | Title | Series type | Series episodes | Your personal score  | Your personal state | Anime state | Aired period | Premiere season | Studio
 ### Genres_table.csv file:
-_* Genre ID | Non-repeating list of genres you've seen_
+* Genre ID | Non-repeating list of genres you've seen
 ### Relational_table.csv file:
-_* Tabla ID | Anime ID | Genre ID_
+* Tabla ID | Anime ID | Genre ID
 
 
 ## How does the code work?
