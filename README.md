@@ -38,9 +38,6 @@ I made the repository to build a dataset to practice with in Power Bi, but you c
 
 This repository was created for academic purposes (it's my first GitHub project and my first Python repository), not with the intention of performing DDoS attacks.
 
-### Current status of the project
-Currently, to reduce the number of HTML queries made, the project has a local copy of the data extracted from My Anime List (the MAL_local_data.pkl file that is automatically created in the root of the module). Once the local file is created, the program only performs HTML queries to add new animes that are not found in the local file.
-
 If you configure the variable "update" option of the "start" function in the "main" module, the program will make an HTML query about those animes that in the local file do not have their status as "Finished Airing".
 
 By the very nature of this logic, if you run the code and then modify your list in My Anime List by removing an anime or changing the ratings you gave to an anime, you must manually delete the local file (MAL_local_data.pkl) for the program to build the data from 0. Otherwise, the program could crash due to an error in the number of data in the local file and the XML are different, plus it will never update the modified ratings of animes already in the local file with the status in "Finished Airing".
